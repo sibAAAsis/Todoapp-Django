@@ -1,0 +1,16 @@
+
+
+{% extends 'base.html' %} {% comment %} This is the confirmation page of  delete task of the todo app {% endcomment %}
+
+
+{% block content %}
+<div class='mt-5 text-center justify-content-center flex shadow-lg p-3 mb-5 bg-body-tertiary rounded p-5 w-50 m-auto'>
+  <h1>Confirm Delete</h1>
+  <p>Are you sure you want to delete the task "{{ task.title }}"?</p>
+  <form method="POST" class="d-flex justify-content-evenly">
+    {% csrf_token %}
+    <a href="{% url 'task_list' %}" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>
+</div>
+{% endblock %}

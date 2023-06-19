@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}  {% comment %} This is the signup page template of the todo app {% endcomment %}
+  <h1 class='text-center m-4'>Create Your Account</h1>
+  <form method="POST" class="w-50 mx-auto">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="{{ form.username.id_for_label }}">Username</label>
+      <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" >
+  
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.email.id_for_label }}">Email</label>
+      <input type="email" class="form-control" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" >
+  
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.password1.id_for_label }}">Password</label>
+      <input type="password" class="form-control" id="{{ form.password1.id_for_label }}" name="{{ form.password1.html_name }}">
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+      <input type="password" class="form-control" id="{{ form.password2.id_for_label }}" name="{{ form.password2.html_name }}">
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+  </form>
+{% endblock %}
+
+
+
+

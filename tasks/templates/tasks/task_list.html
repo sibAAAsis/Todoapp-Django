@@ -1,0 +1,52 @@
+{% extends 'base.html' %}  {% comment %} This is the  task view page template of the todo app {% endcomment %}
+
+
+{% block content %}
+
+<div class='container m-5'>
+
+  <table class="table m-2">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Created At</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+       <tr>   
+       <td {% if task.completed %} class="text-decoration-line-through"{% endif %}>{{ task.title }}</td>
+       <td {% if task.completed %} class="text-decoration-line-through"{% endif %}>{{ task.description }}</td>
+       <td {% if task.completed %} class="text-decoration-line-through"{% endif %}>{{ task.created_at }}</td> 
+       <td>
+        <form action="{% url 'toggle_task' task.id %}" method="POST">
+          {% csrf_token %}
+          <div class="">
+            <input  type="checkbox" id="task_{{ task.id }}" name="completed" {% if task.completed %}checked{% endif %}>
+            <label for="task_{{ task.id }}" class="g-col-6">{{ task.title }}</label>
+            <button type="submit" class='btn btn-outline-primary ml-2'>Completed</button>
+          </div>
+      </form>
+      </td> 
+       <td>
+          <a class='btn btn-outline-danger' href="{% url 'delete_task' task.id %}">Delete</a>
+          <a class='btn btn-outline-warning' href="{% url 'update_task' task.id %}" class="btn btn-primary">Edit</a>
+      </td> 
+      </tr>
+
+      {% empty %}
+      <tr class='flex '>
+        <th scope="row">{{task.id}}</th>
+        <td  colspan="4" class='text-center fs-1 text-uppercase'>No tasks found.</td>
+      </tr>
+      {% endfor %}
+    
+    </tbody>
+  </table>
+</div>
+
+
+  {% endblock %}

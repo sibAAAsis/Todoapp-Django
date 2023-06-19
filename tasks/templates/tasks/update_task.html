@@ -1,0 +1,27 @@
+
+
+{% extends 'base.html' %}   {% comment %} This is the update task page template of the todo app {% endcomment %}
+
+
+{% block content %}
+<div class="container w-50 mx-auto  ">
+  <h2 class="mt-4 mb-3 text-center">Update Task</h2>
+  <form method="POST">
+    {% csrf_token %}
+    
+    <div class="form-group">
+      <label for="{{ form.title.id_for_label }}">Title</label>
+      <input type="text" class="form-control" id="{{ form.title.id_for_label }}" name="{{ form.title.html_name }}" value="{{ form.title.value }}">
+    </div>
+    
+    <div class="form-group">
+      <label for="{{ form.description.id_for_label }}">Description</label>
+      <textarea class="form-control" id="{{ form.description.id_for_label }}" name="{{ form.description.html_name }}" rows="4">{{ form.description.value }}</textarea>
+    </div>
+    
+
+    
+    <button type="submit" class="btn btn-primary mt-3 w-100">Update Task</button>
+  </form>
+</div>
+{% endblock %}
